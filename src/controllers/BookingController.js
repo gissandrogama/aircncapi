@@ -11,8 +11,7 @@ module.exports = {
             spot: spot_id,
             date,
         })
-
-        //popular a relação exibir dados do user e spot
+        
         await booking.populate('spot').populate('user').execPopulate()
 
         return res.json(booking)
