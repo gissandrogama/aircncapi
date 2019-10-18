@@ -7,9 +7,9 @@ module.exports = {
         filename: (req, file, cb) => {
             const ext = path.extname(file.originalname)
             const name = path.basename(file.originalname, ext)
-            const name_t = name.replace(/[^\d]+/g,'')                                   
+            const name_number = name.replace(/[^\d]+/g,'')                                   
 
-            cb(null, `${name_t}-${Date.now()}${ext}`)
+            cb(null, `${name_number}-${Date.now()}${ext}`)
         }
     })
 }
