@@ -10,6 +10,11 @@ const app = express()
 const server = http.Server(app)
 const io = socketio(server)
 
+//conexão como o usuários
+io.on('connection', socket => {
+    console.log('Usuário conectado', socket.id)
+})
+
 mongoose.connect('mongodb://localhost:27017/aircncapi', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
