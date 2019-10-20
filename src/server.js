@@ -10,6 +10,12 @@ const app = express()
 const server = http.Server(app)
 const io = socketio(server)
 
+
+mongoose.connect('mongodb://localhost:27017/aircncapi', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+
 //lista de usuários conectados socket
 const connectedUsers = {}
 
@@ -22,9 +28,12 @@ io.on('connection', socket => {
 
 })
 
-mongoose.connect('mongodb://localhost:27017/aircncapi', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+//add funcionalidade em toda a rota, deixar a variável connectedUsers disponivel para toda a aplicação
+app.use((req, res, next) => {
+    req.io = io
+    req.connectedUsers = connectedUsers
+
+    return next
 })
 
 // req.query = acessar query params (para filtro)
