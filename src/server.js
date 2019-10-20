@@ -10,10 +10,15 @@ const app = express()
 const server = http.Server(app)
 const io = socketio(server)
 
+//lista de usuários conectados socket
+const connectedUsers = {}
+
 //conexão como o usuários
 io.on('connection', socket => {
-    console.log(socket.handshake.query)
-    console.log('Usuário conectado', socket.id)
+
+    const { user_id } = socket.handshake.query
+    //relacionando o id do usuário com o id do socket
+    connectedUsers[user_id] = socket.id
 
 })
 
