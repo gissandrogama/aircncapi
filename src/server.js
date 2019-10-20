@@ -12,15 +12,9 @@ const io = socketio(server)
 
 //conexão como o usuários
 io.on('connection', socket => {
+    console.log(socket.handshake.query)
     console.log('Usuário conectado', socket.id)
 
-    //backend enviando mensagem
-    socket.emit('message', 'Ola')
-    
-    //backend recebendo mensadem
-    socket.on('omini', data => {
-        console.log(data)
-    })
 })
 
 mongoose.connect('mongodb://localhost:27017/aircncapi', {
