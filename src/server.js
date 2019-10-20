@@ -33,7 +33,7 @@ app.use((req, res, next) => {
     req.io = io
     req.connectedUsers = connectedUsers
 
-    return next
+    return next()
 })
 
 // req.query = acessar query params (para filtro)
